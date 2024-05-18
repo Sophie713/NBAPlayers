@@ -10,6 +10,12 @@ import dagger.hilt.components.SingletonComponent
 import retrofit2.Retrofit
 import javax.inject.Singleton
 
+
+/**
+ * Dagger/Hilt module for domain layer
+ *
+ */
+
 @Module
 @InstallIn(SingletonComponent::class)
 object ApiModule {

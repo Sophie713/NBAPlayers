@@ -12,8 +12,16 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.sophiemiller.nbaplayers.presentation.constants.ImageURLs
+import com.sophiemiller.nbaplayers.data.constants.ImageURLs
 
+/**
+ * Player card with basic info
+ *
+ * @param playerName
+ * @param playerPosition
+ * @param playerTeam
+ * @param onClick
+ */
 @Composable
 fun ListItemNBAPlayer(
     playerName: String = "TestName",

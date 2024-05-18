@@ -1,6 +1,7 @@
 package com.sophiemiller.nbaplayers.presentation.ui.compose
 
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Button
 import androidx.compose.material3.Surface
@@ -11,10 +12,17 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import com.sophiemiller.nbaplayers.presentation.ui.compose.views.DefaultVerticalSpacer
 import com.sophiemiller.nbaplayers.presentation.ui.compose.views.HeaderText
-import com.sophiemiller.nbaplayers.presentation.ui.compose.views.ViewItemPlayerDetailsRow
+import com.sophiemiller.nbaplayers.presentation.ui.compose.views.ViewItemMediumTextRow
 import com.sophiemiller.nbaplayers.presentation.ui.mainActivity.navigation.Screens
 import com.sophiemiller.nbaplayers.presentation.ui.mainActivity.viewModels.ListOfPlayersViewModel
 
+/**
+ * player details screen
+ *
+ * @param navController
+ * @param sharedListOfPlayersViewModel
+ * @param playerPosition
+ */
 @Composable
 fun ScreenPlayerDetails(
     navController: NavHostController,
@@ -22,19 +30,21 @@ fun ScreenPlayerDetails(
     playerPosition: Int
 ) {
     val player = sharedListOfPlayersViewModel.getPlayersList().get(playerPosition)
-    Surface(modifier = Modifier.padding(16.dp)) {
-        Column {
+    Surface {
+        Column(modifier = Modifier
+            .fillMaxSize()
+            .padding(16.dp)) {
             HeaderText(text = "Name: " + player.firstName + " " + player.lastName)
             DefaultVerticalSpacer()
-            ViewItemPlayerDetailsRow("Position: ${player.position}")
-            ViewItemPlayerDetailsRow("Height : ${player.height}")
-            ViewItemPlayerDetailsRow("Weight: ${player.weight}")
-            ViewItemPlayerDetailsRow("Jersey Number: ${player.jerseyNumber}")
-            ViewItemPlayerDetailsRow("College: ${player.college}")
-            ViewItemPlayerDetailsRow("Country: ${player.country}")
-            ViewItemPlayerDetailsRow("Draft Year: ${player.draftYear}")
-            ViewItemPlayerDetailsRow("Draft Round: ${player.draftRound}")
-            ViewItemPlayerDetailsRow("Draft Number: ${player.draftNumber}")
+            ViewItemMediumTextRow("Position: ${player.position}")
+            ViewItemMediumTextRow("Height : ${player.height}")
+            ViewItemMediumTextRow("Weight: ${player.weight}")
+            ViewItemMediumTextRow("Jersey Number: ${player.jerseyNumber}")
+            ViewItemMediumTextRow("College: ${player.college}")
+            ViewItemMediumTextRow("Country: ${player.country}")
+            ViewItemMediumTextRow("Draft Year: ${player.draftYear}")
+            ViewItemMediumTextRow("Draft Round: ${player.draftRound}")
+            ViewItemMediumTextRow("Draft Number: ${player.draftNumber}")
             DefaultVerticalSpacer()
             Button(onClick = {
                 navController.navigate(

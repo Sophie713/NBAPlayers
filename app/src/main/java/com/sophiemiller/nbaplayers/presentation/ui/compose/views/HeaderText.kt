@@ -6,6 +6,12 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.sp
 
+/**
+ * composable
+ * header view - black, 20sp, extra spacing
+ *
+ * @param text
+ */
 @Composable
 fun HeaderText(text: String) {
     Text(

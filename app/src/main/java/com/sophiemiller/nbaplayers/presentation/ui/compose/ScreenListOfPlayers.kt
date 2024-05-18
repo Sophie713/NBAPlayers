@@ -26,6 +26,9 @@ import kotlinx.coroutines.flow.distinctUntilChanged
 
 /**
  * Main screen for list of players
+ *
+ * @param sharedListOfPlayersViewModel
+ * @param navController
  */
 @Composable
 fun ScreenListOfPlayers(

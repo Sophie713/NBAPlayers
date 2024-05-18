@@ -1,5 +1,8 @@
-package com.sophiemiller.nbaplayers.presentation.constants
+package com.sophiemiller.nbaplayers.data.constants
 
+/**
+ * constants used across the app
+ */
 object Routes {
     const val LIST_OF_PLAYERS = "LIST_OF_PLAYERS"
     const val PLAYER_DETAIL = "PLAYER_DETAIL"
@@ -16,3 +19,4 @@ object ImageURLs {
 }
 
 const val RESULTS_PER_PAGE = 35
+const val LOG_TAG = "sophiemiller.nbaplayers"

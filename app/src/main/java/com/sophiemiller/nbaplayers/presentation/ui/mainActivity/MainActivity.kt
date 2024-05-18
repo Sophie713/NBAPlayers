@@ -6,8 +6,13 @@ import androidx.activity.compose.setContent
 import androidx.activity.viewModels
 import com.sophiemiller.nbaplayers.presentation.ui.compose.MainActivityContent
 import com.sophiemiller.nbaplayers.presentation.ui.mainActivity.viewModels.ListOfPlayersViewModel
+import com.sophiemiller.nbaplayers.ui.theme.NBAPlayersTheme
 import dagger.hilt.android.AndroidEntryPoint
 
+/**
+ * main startup activity that holds all the available screens
+ *
+ */
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
 
@@ -16,8 +21,10 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            MainActivityContent(viewModel)
+            NBAPlayersTheme(content = {MainActivityContent(viewModel)})
+
         }
+        //load first batch of items
         viewModel.loadMoreItems()
     }
 }

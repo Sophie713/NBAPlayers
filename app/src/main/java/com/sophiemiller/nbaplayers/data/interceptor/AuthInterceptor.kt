@@ -5,6 +5,11 @@ import okhttp3.Request
 import okhttp3.Response
 import java.io.IOException
 
+/**
+ * interceptor adding header with an apiKey to communicate with balldontlie.io website
+ *
+ * @property apiKey
+ */
 class AuthInterceptor(private val apiKey: String) : Interceptor {
     @Throws(IOException::class)
     override fun intercept(chain: Interceptor.Chain): Response {

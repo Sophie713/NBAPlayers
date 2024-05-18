@@ -8,9 +8,14 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.sp
 
+
 /**
- * Composable
- * small icon (40*40) with text 16sp
+ *
+ * composable
+ * row of small icon (40*40) with text 16sp
+ *
+ * @param iconUrl
+ * @param text
  */
 @Composable
 fun ItemViewIconText(iconUrl: String, text: String) {
@@ -18,7 +23,7 @@ fun ItemViewIconText(iconUrl: String, text: String) {
     Row {
         val modifier = Modifier.align(Alignment.CenterVertically)
         SmallIconGlide(iconUrl = iconUrl, modifier = modifier)
-        DefaultHorzontalSpacer()
+        DefaultHorizontalSpacer()
         Text(
             modifier = modifier,
             text = text,

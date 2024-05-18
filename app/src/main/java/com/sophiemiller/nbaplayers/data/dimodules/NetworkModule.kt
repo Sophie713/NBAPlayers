@@ -15,6 +15,10 @@ import retrofit2.converter.gson.GsonConverterFactory
 import javax.inject.Singleton
 
 
+/**
+ * Dagger/Hilt module for data layer
+ */
+
 @Module
 @InstallIn(SingletonComponent::class)
 object NetworkModule {

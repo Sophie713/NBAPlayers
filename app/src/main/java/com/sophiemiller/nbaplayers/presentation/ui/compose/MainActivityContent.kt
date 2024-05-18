@@ -6,11 +6,17 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
-import com.sophiemiller.nbaplayers.presentation.constants.Arguments
-import com.sophiemiller.nbaplayers.presentation.constants.Routes
+import com.sophiemiller.nbaplayers.data.constants.Arguments
+import com.sophiemiller.nbaplayers.data.constants.Routes
 import com.sophiemiller.nbaplayers.presentation.ui.mainActivity.navigation.Screens
 import com.sophiemiller.nbaplayers.presentation.ui.mainActivity.viewModels.ListOfPlayersViewModel
 
+/**
+ * composable
+ * Main Activity compose navigation through all the app screens
+ *
+ * @param sharedListOfPlayersViewModel
+ */
 @Composable
 fun MainActivityContent(sharedListOfPlayersViewModel: ListOfPlayersViewModel) {
     val navController = rememberNavController()
@@ -56,7 +62,6 @@ fun MainActivityContent(sharedListOfPlayersViewModel: ListOfPlayersViewModel) {
             val position = entry.arguments?.getInt(Arguments.PLAYER_POSITION) ?: 0
             ScreenClubDetails(
                 sharedListOfPlayersViewModel = sharedListOfPlayersViewModel,
-                navController = navController,
                 playerPosition = position
             )
         }

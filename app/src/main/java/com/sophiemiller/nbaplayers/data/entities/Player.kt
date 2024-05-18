@@ -2,6 +2,23 @@ package com.sophiemiller.nbaplayers.data.entities
 
 import com.google.gson.annotations.SerializedName
 
+/**
+ * data class Player - info about the player, includes team info
+ *
+ * @property id
+ * @property firstName
+ * @property lastName
+ * @property position
+ * @property height
+ * @property weight
+ * @property jerseyNumber
+ * @property college
+ * @property country
+ * @property draftYear
+ * @property draftRound
+ * @property draftNumber
+ * @property team
+ */
 data class Player(
     @SerializedName("id")
     val id: Int,
