@@ -6,7 +6,7 @@ import androidx.activity.compose.setContent
 import androidx.activity.viewModels
 import com.sophiemiller.nbaplayers.presentation.ui.compose.MainActivityContent
 import com.sophiemiller.nbaplayers.presentation.ui.mainActivity.viewModels.ListOfPlayersViewModel
-import com.sophiemiller.nbaplayers.ui.theme.NBAPlayersTheme
+import com.sophiemiller.nbaplayers.presentation.ui.theme.NBAPlayersTheme
 import dagger.hilt.android.AndroidEntryPoint
 
 /**

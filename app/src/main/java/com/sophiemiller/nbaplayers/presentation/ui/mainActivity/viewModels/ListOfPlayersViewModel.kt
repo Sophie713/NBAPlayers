@@ -21,15 +21,15 @@ import javax.inject.Inject
  * @property useCaseGetMorePlayers
  */
 @HiltViewModel
-class ListOfPlayersViewModel @Inject constructor(val useCaseGetMorePlayers: UseCaseGetMorePlayers) :
+class ListOfPlayersViewModel @Inject constructor(private val useCaseGetMorePlayers: UseCaseGetMorePlayers) :
     ViewModel() {
 
-    private val players: SnapshotStateList<Player> = mutableStateListOf<Player>()
+    private val players: SnapshotStateList<Player> = mutableStateListOf()
 
     /**
      * error handler for coroutines
      */
-    val handler = CoroutineExceptionHandler { _, exception ->
+    private val handler = CoroutineExceptionHandler { _, exception ->
         Log.e(LOG_TAG, exception.message.toString())
     }
 

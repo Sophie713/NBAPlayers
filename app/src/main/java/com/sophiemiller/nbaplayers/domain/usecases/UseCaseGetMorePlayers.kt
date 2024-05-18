@@ -12,10 +12,10 @@ import javax.inject.Inject
  *
  * @property playersRepository
  */
-class UseCaseGetMorePlayers@Inject constructor(val playersRepository: PlayersRepository) {
+class UseCaseGetMorePlayers@Inject constructor(private val playersRepository: PlayersRepository) {
 
     suspend fun getNextPageOfPlayers(currentListItemCount: Int) : Response<PlayersListResponse> {
-        val nextPageNumber = (currentListItemCount/ RESULTS_PER_PAGE).toInt()
+        val nextPageNumber = (currentListItemCount/ RESULTS_PER_PAGE)
        return playersRepository.getPlayers(nextPageNumber)
     }
 }

@@ -10,7 +10,7 @@ import javax.inject.Inject
  *
  * @param playersApiService
  */
-class PlayersRepository @Inject constructor(val playersApiService: PlayersApiService) {
+class PlayersRepository @Inject constructor(private val playersApiService: PlayersApiService) {
 
     suspend fun getPlayers(pageNumber: Int): Response<PlayersListResponse> {
         return playersApiService.getListOfPlayers(pageNumber = pageNumber)

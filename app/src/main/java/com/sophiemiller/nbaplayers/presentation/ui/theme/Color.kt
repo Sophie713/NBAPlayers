@@ -1,4 +1,4 @@
-package com.sophiemiller.nbaplayers.ui.theme
+package com.sophiemiller.nbaplayers.presentation.ui.theme
 
 import androidx.compose.ui.graphics.Color
 

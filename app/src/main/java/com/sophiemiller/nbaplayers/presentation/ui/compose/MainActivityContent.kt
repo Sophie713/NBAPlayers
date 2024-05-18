@@ -7,7 +7,6 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import com.sophiemiller.nbaplayers.data.constants.Arguments
-import com.sophiemiller.nbaplayers.data.constants.Routes
 import com.sophiemiller.nbaplayers.presentation.ui.mainActivity.navigation.Screens
 import com.sophiemiller.nbaplayers.presentation.ui.mainActivity.viewModels.ListOfPlayersViewModel
 

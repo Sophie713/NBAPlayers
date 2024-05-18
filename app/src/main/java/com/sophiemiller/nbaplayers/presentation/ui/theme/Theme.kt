@@ -1,4 +1,4 @@
-package com.sophiemiller.nbaplayers.ui.theme
+package com.sophiemiller.nbaplayers.presentation.ui.theme
 
 import android.app.Activity
 import android.os.Build

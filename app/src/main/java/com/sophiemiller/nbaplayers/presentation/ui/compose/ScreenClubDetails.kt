@@ -7,7 +7,6 @@ import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import androidx.navigation.NavHostController
 import com.sophiemiller.nbaplayers.presentation.ui.compose.views.DefaultVerticalSpacer
 import com.sophiemiller.nbaplayers.presentation.ui.compose.views.HeaderText
 import com.sophiemiller.nbaplayers.presentation.ui.compose.views.ViewItemMediumTextRow

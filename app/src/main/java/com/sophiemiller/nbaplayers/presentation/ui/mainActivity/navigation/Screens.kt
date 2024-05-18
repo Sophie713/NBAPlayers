@@ -1,6 +1,5 @@
 package com.sophiemiller.nbaplayers.presentation.ui.mainActivity.navigation
 
-import androidx.navigation.NavArgs
 import com.sophiemiller.nbaplayers.data.constants.Routes
 
 /**
@@ -9,9 +8,9 @@ import com.sophiemiller.nbaplayers.data.constants.Routes
  * @property route - all routes defined in Constants.Routes object
  */
 sealed class Screens(val route: String) {
-    object ScreenListOfPlayers : Screens(Routes.LIST_OF_PLAYERS)
-    object ScreenPlayerDetails : Screens(Routes.PLAYER_DETAIL)
-    object ScreenClubDetails : Screens(Routes.CLUB_DETAILS)
+    data object ScreenListOfPlayers : Screens(Routes.LIST_OF_PLAYERS)
+    data object ScreenPlayerDetails : Screens(Routes.PLAYER_DETAIL)
+    data object ScreenClubDetails : Screens(Routes.CLUB_DETAILS)
 
     fun withArgs(vararg args: String): String {
         return buildString {

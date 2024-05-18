@@ -1,4 +1,4 @@
-package com.sophiemiller.nbaplayers.ui.theme
+package com.sophiemiller.nbaplayers.presentation.ui.theme
 
 import androidx.compose.material3.Typography
 import androidx.compose.ui.text.TextStyle
