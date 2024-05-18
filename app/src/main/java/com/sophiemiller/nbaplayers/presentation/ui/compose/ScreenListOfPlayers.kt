@@ -1,10 +1,12 @@
 package com.sophiemiller.nbaplayers.presentation.ui.compose
 
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.material3.CircularProgressIndicator
+import androidx.compose.material3.LinearProgressIndicator
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -16,12 +18,15 @@ import androidx.compose.runtime.snapshotFlow
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
-import com.sophiemiller.nbaplayers.presentation.ui.compose.views.DefaultSpacer
+import com.sophiemiller.nbaplayers.presentation.ui.compose.views.DefaultVerticalSpacer
 import com.sophiemiller.nbaplayers.presentation.ui.compose.views.ListItemNBAPlayer
 import com.sophiemiller.nbaplayers.presentation.ui.mainActivity.navigation.Screens
 import com.sophiemiller.nbaplayers.presentation.ui.mainActivity.viewModels.ListOfPlayersViewModel
 import kotlinx.coroutines.flow.distinctUntilChanged
 
+/**
+ * Main screen for list of players
+ */
 @Composable
 fun ScreenListOfPlayers(
     sharedListOfPlayersViewModel: ListOfPlayersViewModel,
@@ -31,9 +36,8 @@ fun ScreenListOfPlayers(
     val listState = rememberLazyListState()
     var isLoading by remember { mutableStateOf(true) }
     if (isLoading) {
-        DefaultSpacer()
-        CircularProgressIndicator(
-            modifier = Modifier.width(80.dp),
+        LinearProgressIndicator(
+            modifier = Modifier.fillMaxWidth(),
             color = MaterialTheme.colorScheme.background,
             trackColor = MaterialTheme.colorScheme.primary,
         )

@@ -9,10 +9,10 @@ data class PlayersListResponse(
     val meta : Meta?
 ) {
     override fun toString(): String {
-        var stringList = ""
-        data.forEach { player: Player ->
-            stringList = stringList + "\n" + player.toString()
+        return buildString {
+            data.forEach { player: Player ->
+                append(player.toString())
+            }
         }
-        return stringList
     }
 }

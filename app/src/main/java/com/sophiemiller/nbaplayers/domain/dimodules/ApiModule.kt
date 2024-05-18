@@ -2,6 +2,7 @@ package com.sophiemiller.nbaplayers.domain.dimodules
 
 import com.sophiemiller.nbaplayers.domain.apiInterfaces.PlayersApiService
 import com.sophiemiller.nbaplayers.domain.repositories.PlayersRepository
+import com.sophiemiller.nbaplayers.domain.usecases.UseCaseGetMorePlayers
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -23,5 +24,11 @@ object ApiModule {
     @Singleton
     fun providePlayersRepository(playersApiService: PlayersApiService): PlayersRepository {
         return PlayersRepository(playersApiService)
+    }
+
+    @Provides
+    @Singleton
+    fun provideUseCaseGetMorePlayers(playersRepository: PlayersRepository) : UseCaseGetMorePlayers {
+        return UseCaseGetMorePlayers(playersRepository)
     }
 }

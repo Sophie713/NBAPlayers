@@ -8,7 +8,7 @@ import javax.inject.Inject
 
 class PlayersRepository @Inject constructor(val playersApiService: PlayersApiService) {
 
-    suspend fun getAllPlayers(): Response<PlayersListResponse> {
-        return playersApiService.getListOfPlayers()
+    suspend fun getPlayers(pageNumber: Int): Response<PlayersListResponse> {
+        return playersApiService.getListOfPlayers(pageNumber = pageNumber)
     }
 }

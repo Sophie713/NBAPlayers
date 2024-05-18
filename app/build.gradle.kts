@@ -81,12 +81,19 @@ dependencies {
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
 
+    // GLIDE
+    // Glide dependencies
+    implementation(libs.glide)
+    kapt(libs.compiler)
+
     // COMPOSE
     implementation( libs.androidx.navigation.compose)
     implementation(libs.androidx.lifecycle.viewmodel.compose)
     implementation(libs.androidx.material3.android)
     implementation(libs.androidx.activity.compose)
     implementation(platform(libs.androidx.compose.bom))
+    // Glide Compose integration
+    implementation(libs.skydoves.landscapist.glide)
 
     // VIEW MODEL
     // ViewModel and Compose dependencies

@@ -18,5 +18,6 @@ class MainActivity : ComponentActivity() {
         setContent {
             MainActivityContent(viewModel)
         }
+        viewModel.loadMoreItems()
     }
 }
