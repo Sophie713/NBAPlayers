@@ -61,6 +61,7 @@ fun MainActivityContent(sharedListOfPlayersViewModel: ListOfPlayersViewModel) {
             val position = entry.arguments?.getInt(Arguments.PLAYER_POSITION) ?: 0
             ScreenClubDetails(
                 sharedListOfPlayersViewModel = sharedListOfPlayersViewModel,
+                navController = navController,
                 playerPosition = position
             )
         }

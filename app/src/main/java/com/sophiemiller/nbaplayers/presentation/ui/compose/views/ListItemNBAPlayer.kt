@@ -21,7 +21,7 @@ import com.sophiemiller.nbaplayers.data.constants.ImageURLs
  */
 @Composable
 fun ListItemNBAPlayer(
-    playerName: String = "TestName",
+    playerName: String = "Players name",
     playerPosition: String? = null,
     playerTeam: String? = null,
     onClick: () -> Unit

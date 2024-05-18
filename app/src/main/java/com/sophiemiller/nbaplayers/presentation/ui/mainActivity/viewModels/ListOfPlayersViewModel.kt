@@ -51,10 +51,25 @@ class ListOfPlayersViewModel @Inject constructor(private val useCaseGetMorePlaye
         viewModelScope.launch(Dispatchers.IO) {
             val response = useCaseGetMorePlayers.getNextPageOfPlayers(players.size)
             withContext(Dispatchers.Main + handler) {
-                if (response.isSuccessful) {
-                    response.body()?.data?.let { players.addAll(it) }
+                if (response?.isSuccessful == true) {
+                    //make sure no null data comes
+                    response.body()?.data?.let { listOfPlayers ->
+                        listOfPlayers.forEach { player ->
+                            if (player is Player) {
+                                players.add(player)
+                            }
+
+                        }
+                    } ?: run {
+                        Log.e(
+                            LOG_TAG,
+                            "getNextPageOfPlayers: Couldnt parse data: ${
+                                response.body()?.toString()
+                            }"
+                        )
+                    }
                 } else {
-                    Log.e(LOG_TAG, "getNextPageOfPlayers: ${response.errorBody().toString()}")
+                    Log.e(LOG_TAG, "getNextPageOfPlayers: ${response?.errorBody().toString()}")
                 }
 
             }

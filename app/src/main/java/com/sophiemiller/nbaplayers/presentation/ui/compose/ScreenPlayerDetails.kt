@@ -3,6 +3,8 @@ package com.sophiemiller.nbaplayers.presentation.ui.compose
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Button
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
@@ -11,7 +13,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import com.sophiemiller.nbaplayers.presentation.ui.compose.views.DefaultVerticalSpacer
-import com.sophiemiller.nbaplayers.presentation.ui.compose.views.HeaderText
+import com.sophiemiller.nbaplayers.presentation.ui.compose.views.Toolbar
 import com.sophiemiller.nbaplayers.presentation.ui.compose.views.ViewItemMediumTextRow
 import com.sophiemiller.nbaplayers.presentation.ui.mainActivity.navigation.Screens
 import com.sophiemiller.nbaplayers.presentation.ui.mainActivity.viewModels.ListOfPlayersViewModel
@@ -29,31 +31,57 @@ fun ScreenPlayerDetails(
     sharedListOfPlayersViewModel: ListOfPlayersViewModel,
     playerPosition: Int
 ) {
-    val player = sharedListOfPlayersViewModel.getPlayersList().get(playerPosition)
+    val player = sharedListOfPlayersViewModel.getPlayersList()[playerPosition]
+    val scrollState = rememberScrollState()
     Surface {
-        Column(modifier = Modifier
-            .fillMaxSize()
-            .padding(16.dp)) {
-            HeaderText(text = "Name: " + player.firstName + " " + player.lastName)
+        Column(
+            modifier = Modifier
+                .fillMaxSize()
+                .verticalScroll(scrollState)
+        ) {
+            //Toolbar
+            Toolbar(title = "${(player.firstName ?: "")} ${(player.lastName ?: "")}") { navController.popBackStack() }
             DefaultVerticalSpacer()
-            ViewItemMediumTextRow("Position: ${player.position}")
-            ViewItemMediumTextRow("Height : ${player.height}")
-            ViewItemMediumTextRow("Weight: ${player.weight}")
-            ViewItemMediumTextRow("Jersey Number: ${player.jerseyNumber}")
-            ViewItemMediumTextRow("College: ${player.college}")
-            ViewItemMediumTextRow("Country: ${player.country}")
-            ViewItemMediumTextRow("Draft Year: ${player.draftYear}")
-            ViewItemMediumTextRow("Draft Round: ${player.draftRound}")
-            ViewItemMediumTextRow("Draft Number: ${player.draftNumber}")
+            player.position?.let {
+                ViewItemMediumTextRow("Position: $it")
+            }
+            player.height?.let {
+                ViewItemMediumTextRow("Height : $it")
+            }
+            player.weight?.let {
+                ViewItemMediumTextRow("Weight: $it")
+            }
+            player.jerseyNumber?.let {
+                ViewItemMediumTextRow("Jersey Number: $it")
+            }
+            player.college?.let {
+                ViewItemMediumTextRow("College: $it")
+            }
+            player.country?.let {
+                ViewItemMediumTextRow("Country: $it")
+            }
+            player.draftYear?.let {
+                ViewItemMediumTextRow("Draft Year: $it")
+            }
+            player.draftRound?.let {
+                ViewItemMediumTextRow("Draft Round: $it")
+            }
+            player.draftNumber?.let {
+                ViewItemMediumTextRow("Draft Number: $it")
+            }
             DefaultVerticalSpacer()
-            Button(onClick = {
-                navController.navigate(
-                    Screens.ScreenClubDetails.withArgs(
-                        playerPosition.toString()
-                    )
-                )
-            }) {
-                Text(text = "Team Info")
+            player.team?.let { team ->
+                if (team.fullName != null) {
+                    Button(onClick = {
+                        navController.navigate(
+                            Screens.ScreenClubDetails.withArgs(
+                                playerPosition.toString()
+                            )
+                        )
+                    }, modifier = Modifier.padding(horizontal = 16.dp)) {
+                        Text(text = "Team Info")
+                    }
+                }
             }
         }
     }

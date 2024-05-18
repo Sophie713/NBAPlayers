@@ -12,5 +12,5 @@ import retrofit2.http.Query
  */
 interface PlayersApiService {
     @GET("v1/players")
-    suspend fun getListOfPlayers(@Query("cursor") pageNumber: Int, @Query("per_page") resultsPerPage: Int = RESULTS_PER_PAGE) : Response<PlayersListResponse>
+    suspend fun getListOfPlayers(@Query("cursor") pageNumber: Int, @Query("per_page") resultsPerPage: Int = RESULTS_PER_PAGE) : Response<PlayersListResponse?>?
 }

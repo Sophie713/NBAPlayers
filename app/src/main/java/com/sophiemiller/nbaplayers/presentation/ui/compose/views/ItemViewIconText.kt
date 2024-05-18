@@ -23,7 +23,7 @@ fun ItemViewIconText(iconUrl: String, text: String) {
     Row {
         val modifier = Modifier.align(Alignment.CenterVertically)
         SmallIconGlide(iconUrl = iconUrl, modifier = modifier)
-        DefaultHorizontalSpacer()
+        DefaultRowSpacer()
         Text(
             modifier = modifier,
             text = text,

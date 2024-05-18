@@ -11,6 +11,6 @@ import androidx.compose.ui.unit.dp
  * spacer for rows at 8dp
  */
 @Composable
-fun DefaultHorizontalSpacer() {
+fun DefaultRowSpacer() {
     Spacer(modifier = Modifier.width(8.dp))
 }

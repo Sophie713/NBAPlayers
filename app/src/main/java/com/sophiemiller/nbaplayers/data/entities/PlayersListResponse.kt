@@ -10,13 +10,13 @@ import com.google.gson.annotations.SerializedName
  */
 data class PlayersListResponse(
     @SerializedName("data")
-    val data: List<Player>,
+    val data: List<Player?>?,
     @SerializedName("meta")
     val meta : Meta?
 ) {
     override fun toString(): String {
         return buildString {
-            data.forEach { player: Player ->
+            data?.forEach { player: Player? ->
                 append(player.toString())
             }
         }

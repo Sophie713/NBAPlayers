@@ -14,7 +14,7 @@ import javax.inject.Inject
  */
 class UseCaseGetMorePlayers@Inject constructor(private val playersRepository: PlayersRepository) {
 
-    suspend fun getNextPageOfPlayers(currentListItemCount: Int) : Response<PlayersListResponse> {
+    suspend fun getNextPageOfPlayers(currentListItemCount: Int) : Response<PlayersListResponse?>? {
         val nextPageNumber = (currentListItemCount/ RESULTS_PER_PAGE)
        return playersRepository.getPlayers(nextPageNumber)
     }
