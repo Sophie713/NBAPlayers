@@ -21,31 +21,31 @@ import com.google.gson.annotations.SerializedName
  */
 data class Player(
     @SerializedName("id")
-    val id: Int?,
+    val id: Int? = null,
     @SerializedName("first_name")
-    val firstName: String?,
+    val firstName: String? = null,
     @SerializedName("last_name")
-    val lastName: String?,
+    val lastName: String? = null,
     @SerializedName("position")
-    val position: String?,
+    val position: String? = null,
     @SerializedName("height")
-    val height: String?,
+    val height: String? = null,
     @SerializedName("weight")
-    val weight: String?,
+    val weight: String? = null,
     @SerializedName("jersey_number")
-    val jerseyNumber: String?,
+    val jerseyNumber: String? = null,
     @SerializedName("college")
-    val college: String?,
+    val college: String? = null,
     @SerializedName("country")
-    val country: String?,
+    val country: String? = null,
     @SerializedName("draft_year")
-    val draftYear: Int?,
+    val draftYear: Int? = null,
     @SerializedName("draft_round")
-    val draftRound: Int?,
+    val draftRound: Int? = null,
     @SerializedName("draft_number")
-    val draftNumber: Int?,
+    val draftNumber: Int? = null,
     @SerializedName("team")
-    val team: Team?
+    val team: Team? = null
 ) {
     override fun toString(): String {
         return "Player: \n" +

@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">NBAPlayers</string>
+    <string name="error_loading_players">Error</string>
+    <string name="error_loading_players_desc">There has been an error loading more players into the list.\nPlease, check your internet connection and try again.</string>
+    <string name="try_again">Try again</string>
+    <string name="ok">OK</string>
 </resources>

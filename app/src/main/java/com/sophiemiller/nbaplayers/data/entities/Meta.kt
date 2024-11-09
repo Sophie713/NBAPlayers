@@ -10,7 +10,7 @@ import com.google.gson.annotations.SerializedName
  */
 data class Meta(
     @SerializedName("next_cursor")
-    val nextCursor: Int?,
+    val nextCursor: Int? = null,
     @SerializedName("per_page")
-    val perPage: Int?
+    val perPage: Int? = null
 )

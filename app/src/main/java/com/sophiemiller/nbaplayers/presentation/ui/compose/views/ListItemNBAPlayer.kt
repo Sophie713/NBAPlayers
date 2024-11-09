@@ -10,20 +10,17 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.sophiemiller.nbaplayers.data.constants.ImageURLs
+import com.sophiemiller.nbaplayers.data.entities.Player
 
 /**
  * Player card with basic info
  *
- * @param playerName
- * @param playerPosition
- * @param playerTeam
+ * @param player
  * @param onClick
  */
 @Composable
 fun ListItemNBAPlayer(
-    playerName: String = "Players name",
-    playerPosition: String? = null,
-    playerTeam: String? = null,
+    player: Player,
     onClick: () -> Unit
 ) {
     Surface(
@@ -31,7 +28,7 @@ fun ListItemNBAPlayer(
             .fillMaxWidth()
             .padding(8.dp)
             .clickable { onClick() },
-        color = MaterialTheme.colorScheme.surface,
+        color = MaterialTheme.colorScheme.tertiaryContainer,
         shape = MaterialTheme.shapes.medium,
         shadowElevation = 2.dp,
     ) {
@@ -39,12 +36,12 @@ fun ListItemNBAPlayer(
             modifier = Modifier
                 .padding(16.dp)
         ) {
-            HeaderText(text = playerName)
-            playerTeam?.let {
-                ItemViewIconText(iconUrl = ImageURLs.ICON_TEAM_NAME, text = it)
+            HeaderText(text = "${player.firstName} ${player.lastName}")
+            player.team?.let {
+                ItemViewIconText(iconUrl = ImageURLs.ICON_TEAM_NAME, text = "${it.name}")
             }
-            playerPosition?.let {
-                ItemViewIconText(ImageURLs.ICOT_TEAM_POSITION, it)
+            player.position?.let {
+                ItemViewIconText(ImageURLs.ICON_TEAM_POSITION, it)
             }
         }
 
