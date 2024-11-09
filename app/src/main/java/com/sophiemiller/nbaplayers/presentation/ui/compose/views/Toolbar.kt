@@ -1,6 +1,7 @@
 package com.sophiemiller.nbaplayers.presentation.ui.compose.views
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -8,7 +9,7 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.ArrowBack
+import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
@@ -35,10 +36,9 @@ fun Toolbar(title: String = "NBA Players", onBackClick: (() -> Unit)? = null) {
         onBackClick?.let {
             IconButton(onClick = { onBackClick.invoke() }, Modifier.padding(8.dp)) {
                 Icon(
-                    imageVector = Icons.Default.ArrowBack,
+                    imageVector = Icons.AutoMirrored.Filled.ArrowBack,
                     contentDescription = "Star Icon",
                     modifier = Modifier.size(40.dp).padding(4.dp),
-                    tint = Color.Black
                 )
             }
         }
@@ -48,7 +48,11 @@ fun Toolbar(title: String = "NBA Players", onBackClick: (() -> Unit)? = null) {
             text = title,
             fontSize = 24.sp,
             fontWeight = FontWeight.Bold,
-            color = Color.Black
+            color = if(isSystemInDarkTheme()) {
+                Color.White
+            } else {
+                Color.Black
+            }
         )
     }
 }

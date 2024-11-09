@@ -11,14 +11,14 @@ plugins {
 
 android {
     namespace = "com.sophiemiller.nbaplayers"
-    compileSdk = 34
+    compileSdk = 35
 
     defaultConfig {
         applicationId = "com.sophiemiller.nbaplayers"
         minSdk = 24
-        targetSdk = 34
-        versionCode = 1
-        versionName = "1.0"
+        targetSdk = 35
+        versionCode = 2
+        versionName = "2.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables {
@@ -57,7 +57,7 @@ android {
         buildConfig = true
     }
     composeOptions {
-        kotlinCompilerExtensionVersion = "1.5.1"
+        kotlinCompilerExtensionVersion = "1.5.15"
     }
     packaging {
         resources {
@@ -87,7 +87,7 @@ dependencies {
     kapt(libs.compiler)
 
     // COMPOSE
-    implementation( libs.androidx.navigation.compose)
+    implementation(libs.androidx.navigation.compose)
     implementation(libs.androidx.lifecycle.viewmodel.compose)
     implementation(libs.androidx.material3.android)
     implementation(libs.androidx.activity.compose)
@@ -116,10 +116,5 @@ dependencies {
     kapt(libs.hilt.android.compiler)
     kapt(libs.androidx.hilt.compiler)
     implementation(libs.hilt.navigation.compose)
-
-    // DEBUGGING TOOLS
-    // Flipper - added only to debuggable builds - not to release.
-    implementation("com.facebook.flipper:flipper:0.249.0")
-    implementation("com.facebook.flipper:flipper-network-plugin:0.249.0")
 
 }

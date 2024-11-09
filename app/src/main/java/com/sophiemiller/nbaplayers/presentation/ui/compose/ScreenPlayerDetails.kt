@@ -9,29 +9,25 @@ import androidx.compose.material3.Button
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import androidx.navigation.NavHostController
 import com.sophiemiller.nbaplayers.presentation.ui.compose.views.DefaultVerticalSpacer
 import com.sophiemiller.nbaplayers.presentation.ui.compose.views.Toolbar
 import com.sophiemiller.nbaplayers.presentation.ui.compose.views.ViewItemMediumTextRow
-import com.sophiemiller.nbaplayers.presentation.ui.mainActivity.navigation.Screens
-import com.sophiemiller.nbaplayers.presentation.ui.mainActivity.viewModels.ListOfPlayersViewModel
+import com.sophiemiller.nbaplayers.presentation.ui.mainActivity.viewModels.PlayersAppViewModel
+import com.sophiemiller.nbaplayers.presentation.ui.mainActivity.viewModels.viewModelEvents.SharedViewModelEvents
 
 /**
  * player details screen
  *
- * @param navController
- * @param sharedListOfPlayersViewModel
- * @param playerPosition
+ * @param sharedPlayersAppViewModel
  */
 @Composable
 fun ScreenPlayerDetails(
-    navController: NavHostController,
-    sharedListOfPlayersViewModel: ListOfPlayersViewModel,
-    playerPosition: Int
+    sharedPlayersAppViewModel: PlayersAppViewModel
 ) {
-    val player = sharedListOfPlayersViewModel.getPlayersList()[playerPosition]
+    val uiState = sharedPlayersAppViewModel.playerDetailState.collectAsState()
     val scrollState = rememberScrollState()
     Surface {
         Column(
@@ -40,44 +36,41 @@ fun ScreenPlayerDetails(
                 .verticalScroll(scrollState)
         ) {
             //Toolbar
-            Toolbar(title = "${(player.firstName ?: "")} ${(player.lastName ?: "")}") { navController.popBackStack() }
+            Toolbar(title = "${(uiState.value.player.firstName ?: "")} ${(uiState.value.player.lastName ?: "")}")
+            { sharedPlayersAppViewModel.onEvent(SharedViewModelEvents.OnNavigateBack) }
             DefaultVerticalSpacer()
-            player.position?.let {
+            uiState.value.player.position?.let {
                 ViewItemMediumTextRow("Position: $it")
             }
-            player.height?.let {
+            uiState.value.player.height?.let {
                 ViewItemMediumTextRow("Height : $it")
             }
-            player.weight?.let {
+            uiState.value.player.weight?.let {
                 ViewItemMediumTextRow("Weight: $it")
             }
-            player.jerseyNumber?.let {
+            uiState.value.player.jerseyNumber?.let {
                 ViewItemMediumTextRow("Jersey Number: $it")
             }
-            player.college?.let {
+            uiState.value.player.college?.let {
                 ViewItemMediumTextRow("College: $it")
             }
-            player.country?.let {
+            uiState.value.player.country?.let {
                 ViewItemMediumTextRow("Country: $it")
             }
-            player.draftYear?.let {
+            uiState.value.player.draftYear?.let {
                 ViewItemMediumTextRow("Draft Year: $it")
             }
-            player.draftRound?.let {
+            uiState.value.player.draftRound?.let {
                 ViewItemMediumTextRow("Draft Round: $it")
             }
-            player.draftNumber?.let {
+            uiState.value.player.draftNumber?.let {
                 ViewItemMediumTextRow("Draft Number: $it")
             }
             DefaultVerticalSpacer()
-            player.team?.let { team ->
+            uiState.value.player.team?.let { team ->
                 if (team.fullName != null) {
                     Button(onClick = {
-                        navController.navigate(
-                            Screens.ScreenClubDetails.withArgs(
-                                playerPosition.toString()
-                            )
-                        )
+                        sharedPlayersAppViewModel.onEvent(SharedViewModelEvents.OnTeamDetailsClicked(team))
                     }, modifier = Modifier.padding(horizontal = 16.dp)) {
                         Text(text = "Team Info")
                     }

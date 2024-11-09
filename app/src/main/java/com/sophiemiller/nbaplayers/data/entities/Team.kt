@@ -15,19 +15,19 @@ import com.google.gson.annotations.SerializedName
  */
 data class Team(
     @SerializedName("id")
-    val id: Int?,
+    val id: Int? = null,
     @SerializedName("conference")
-    val conference: String?,
+    val conference: String? = null,
     @SerializedName("division")
-    val division: String?,
+    val division: String? = null,
     @SerializedName("city")
-    val city: String?,
+    val city: String? = null,
     @SerializedName("name")
-    val name: String?,
+    val name: String? = null,
     @SerializedName("full_name")
-    val fullName: String?,
+    val fullName: String? = null,
     @SerializedName("abbreviation")
-    val abbreviation: String?
+    val abbreviation: String? = null
 ) {
     override fun toString(): String {
         return " Team: \n" +

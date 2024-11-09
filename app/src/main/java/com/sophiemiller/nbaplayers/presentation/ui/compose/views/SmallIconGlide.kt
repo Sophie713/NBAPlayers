@@ -8,7 +8,6 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Build
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Icon
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -30,8 +29,7 @@ fun SmallIconGlide(modifier: Modifier = Modifier, iconUrl: String = ImageURLs.IC
     Surface(
         modifier = modifier
             .width(40.dp)
-            .height(40.dp),
-        color = MaterialTheme.colorScheme.background
+            .height(40.dp)
     ) {
         GlideImage(
             imageModel = iconUrl,

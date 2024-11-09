@@ -10,9 +10,9 @@ import com.google.gson.annotations.SerializedName
  */
 data class PlayersListResponse(
     @SerializedName("data")
-    val data: List<Player?>?,
+    val data: List<Player?>? = null,
     @SerializedName("meta")
-    val meta : Meta?
+    val meta : Meta? = null
 ) {
     override fun toString(): String {
         return buildString {

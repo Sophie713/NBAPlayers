@@ -6,26 +6,24 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Modifier
-import androidx.navigation.NavHostController
 import com.sophiemiller.nbaplayers.presentation.ui.compose.views.DefaultVerticalSpacer
 import com.sophiemiller.nbaplayers.presentation.ui.compose.views.Toolbar
 import com.sophiemiller.nbaplayers.presentation.ui.compose.views.ViewItemMediumTextRow
-import com.sophiemiller.nbaplayers.presentation.ui.mainActivity.viewModels.ListOfPlayersViewModel
+import com.sophiemiller.nbaplayers.presentation.ui.mainActivity.viewModels.PlayersAppViewModel
+import com.sophiemiller.nbaplayers.presentation.ui.mainActivity.viewModels.viewModelEvents.SharedViewModelEvents
 
 /**
  * Club details screen
  *
- * @param sharedListOfPlayersViewModel
- * @param playerPosition
+ * @param sharedPlayersAppViewModel
  */
 @Composable
-fun ScreenClubDetails(
-    sharedListOfPlayersViewModel: ListOfPlayersViewModel,
-    playerPosition: Int,
-    navController: NavHostController
+fun ScreenTeamDetails(
+    sharedPlayersAppViewModel: PlayersAppViewModel,
 ) {
-    val team = sharedListOfPlayersViewModel.getPlayersList()[playerPosition].team
+    val uiState = sharedPlayersAppViewModel.playerTeamState.collectAsState()
     val scrollState = rememberScrollState()
     Surface {
         Column(
@@ -34,20 +32,23 @@ fun ScreenClubDetails(
                 .verticalScroll(scrollState)
         ) {
             //Toolbar
-            // we checked null before
-            Toolbar(title = "${team!!.fullName}") { navController.popBackStack() }
+            Toolbar(title = "${uiState.value.team.fullName}") {
+                sharedPlayersAppViewModel.onEvent(
+                    SharedViewModelEvents.OnNavigateBack
+                )
+            }
             DefaultVerticalSpacer()
             //check info isnt null and add info
-            team.abbreviation?.let {
+            uiState.value.team.abbreviation?.let {
                 ViewItemMediumTextRow("Abbreviation: $it")
             }
-            team.conference?.let {
+            uiState.value.team.conference?.let {
                 ViewItemMediumTextRow("Conference: $it")
             }
-            team.division?.let {
+            uiState.value.team.division?.let {
                 ViewItemMediumTextRow("Division: $it")
             }
-            team.city?.let {
+            uiState.value.team.city?.let {
                 ViewItemMediumTextRow("City: $it")
             }
         }

@@ -1,69 +1,62 @@
 package com.sophiemiller.nbaplayers.presentation.ui.compose
 
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.safeDrawingPadding
 import androidx.compose.runtime.Composable
-import androidx.navigation.NavType
+import androidx.compose.ui.Modifier
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import androidx.navigation.navArgument
-import com.sophiemiller.nbaplayers.data.constants.Arguments
+import com.sophiemiller.nbaplayers.presentation.ui.mainActivity.navigation.NavManager
 import com.sophiemiller.nbaplayers.presentation.ui.mainActivity.navigation.Screens
-import com.sophiemiller.nbaplayers.presentation.ui.mainActivity.viewModels.ListOfPlayersViewModel
+import com.sophiemiller.nbaplayers.presentation.ui.mainActivity.viewModels.PlayersAppViewModel
 
 /**
  * composable
  * Main Activity compose navigation through all the app screens
  *
- * @param sharedListOfPlayersViewModel
+ * @param sharedPlayersAppViewModel
  */
 @Composable
-fun MainActivityContent(sharedListOfPlayersViewModel: ListOfPlayersViewModel) {
+fun MainActivityContent(sharedPlayersAppViewModel: PlayersAppViewModel) {
     val navController = rememberNavController()
-    NavHost(navController, startDestination = Screens.ScreenListOfPlayers.route) {
-        /**
-         * Screen that shows list of the players
-         */
-        composable(Screens.ScreenListOfPlayers.route) {
-            ScreenListOfPlayers(
-                sharedListOfPlayersViewModel = sharedListOfPlayersViewModel,
-                navController = navController
-            )
-        }
-        /**
-         * screen that shows player details
-         */
-        composable(Screens.ScreenPlayerDetails.route + "/{${Arguments.PLAYER_POSITION}}",
-            arguments = listOf(
-                navArgument(name = Arguments.PLAYER_POSITION) {
-                    type = NavType.IntType
-                    nullable = false
-                    defaultValue = 0
-                }
-            )) { entry ->
-            val position = entry.arguments?.getInt(Arguments.PLAYER_POSITION) ?: 0
-            ScreenPlayerDetails(
-                sharedListOfPlayersViewModel = sharedListOfPlayersViewModel,
-                navController = navController,
-                playerPosition = position
-            )
-        }
-        /**
-         * screen that shows club details
-         */
-        composable(
-            Screens.ScreenClubDetails.route + "/{${Arguments.PLAYER_POSITION}}", arguments = listOf(
-                navArgument(name = Arguments.PLAYER_POSITION) {
-                    type = NavType.IntType
-                    nullable = false
-                    defaultValue = 0
-                })
-        ) { entry ->
-            val position = entry.arguments?.getInt(Arguments.PLAYER_POSITION) ?: 0
-            ScreenClubDetails(
-                sharedListOfPlayersViewModel = sharedListOfPlayersViewModel,
-                navController = navController,
-                playerPosition = position
-            )
+    sharedPlayersAppViewModel.setNavManager(NavManager(navController))
+    /**
+     * edge to edge padding
+     */
+    Box(
+        modifier = Modifier
+            .fillMaxSize()
+            .safeDrawingPadding()
+    ) {
+        NavHost(navController, startDestination = Screens.ScreenListOfPlayers.route) {
+            /**
+             * Screen that shows list of the players
+             */
+            composable(Screens.ScreenListOfPlayers.route) {
+                ScreenListOfPlayers(
+                    sharedPlayersAppViewModel = sharedPlayersAppViewModel,
+                )
+            }
+            /**
+             * screen that shows player details
+             */
+            composable(Screens.ScreenPlayerDetails.route) {
+                ScreenPlayerDetails(
+                    sharedPlayersAppViewModel = sharedPlayersAppViewModel,
+                )
+            }
+            /**
+             * screen that shows club details
+             */
+            composable(
+                Screens.ScreenClubDetails.route
+            ) {
+                ScreenTeamDetails(
+                    sharedPlayersAppViewModel = sharedPlayersAppViewModel,
+                )
+            }
         }
     }
 }
