@@ -23,7 +23,5 @@ class MainActivity : ComponentActivity() {
         setContent {
             NBAPlayersTheme(content = {MainActivityContent(viewModel)})
         }
-        //load first batch of items
-        viewModel.loadMoreItems()
     }
 }
